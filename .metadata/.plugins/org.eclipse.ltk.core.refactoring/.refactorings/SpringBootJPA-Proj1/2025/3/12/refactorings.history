@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.nit.entity&apos; to &apos;SpringBootJPA-Proj-SortPaging/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;SpringBootJPA-Proj1&apos;&#x0D;&#x0A;- Destination element: &apos;SpringBootJPA-Proj-SortPaging/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;SpringBootJPA-Proj1/src/main/java/com.nit.entity&apos;" description="Copy package" destination="=SpringBootJPA-Proj-SortPaging/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.nit.entity" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1742648269176" version="1.0"/>
+</session>

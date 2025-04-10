@@ -1,0 +1,53 @@
+package com.nit.runner;
+
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nit.service.IPassportService;
+
+@Component
+public class PersonPassportMngmentRunner implements CommandLineRunner {
+	
+	@Autowired
+	private IPassportService passService;
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		/*try {
+			Scanner sc= new Scanner(System.in);
+			System.out.println("Enter Person Name:");
+			String name=sc.nextLine();
+			System.out.println("Enter Person Adress:");
+			String adress=sc.nextLine();
+			System.out.println("Enter Person PassportNumber:");
+			String passNo=sc.nextLine();
+			System.out.println("Enter Person Issued Country:");
+			String issuedCountry=sc.nextLine();
+			
+			String detailsMsg = passService.loadPersonPassprtDetails(name, adress, passNo, issuedCountry);
+			System.out.println(detailsMsg);
+		}
+		catch(Exception e)
+		{
+			
+		e.printStackTrace();	
+		}*/
+		
+		try {
+			
+			
+			String detailsMsg = passService.loadAllPersonPassportDetails();
+			System.out.println(detailsMsg);
+		}
+		catch(Exception e)
+		{
+			
+		e.printStackTrace();	
+		}
+	}
+
+}

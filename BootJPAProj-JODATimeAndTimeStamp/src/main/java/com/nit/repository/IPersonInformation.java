@@ -1,0 +1,13 @@
+package com.nit.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.nit.entity.PersonInfo;
+
+public interface IPersonInformation extends JpaRepository<PersonInfo, Integer> {
+	
+	@Query(value="SELECT TRUNC(MONTHS_BETWEEN(SYSDATE,DOB)/12) FROM JODA_PERSON_INFO WHERE PS_ID=:id",nativeQuery=true)
+	public Integer getAge(Integer id);
+
+}

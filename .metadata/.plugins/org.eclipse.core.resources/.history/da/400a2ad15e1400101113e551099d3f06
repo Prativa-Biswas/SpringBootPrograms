@@ -1,0 +1,13 @@
+package com.nit.service;
+
+public interface ICustomerMgnmtService {
+	
+	public String saveDataUsingParentToChild();
+	public String saveDataUsingChild();
+	
+	public void loadDataUsingParent();
+	public void loadDataUsingChild();
+
+	public String deleteDataUsingParent(Integer cust_id );
+	public String deleteAllPhonesNumbersOfCustomer(Integer cust_id);
+}

@@ -1,0 +1,21 @@
+package com.nit.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.nit.entity.Faculty;
+
+public interface IFacultyRepository extends JpaRepository<Faculty, Integer> {
+
+	/*@Query(value="select fid,fname,faddress,sid,sid,saddress,college from Faculty f inner join  JPA_FACULTY_STUDENT fs "
+			+ "on f.fid=fs.faculty_id inner join Student s on s.sid=fs.student_id where fid=:id",nativeQuery=true)*/
+	
+	@Query(value = "SELECT f.*, s.*\r\n"
+			+ "FROM jpa_faculty f\r\n"
+			+ "INNER JOIN jpa_faculty_student fs ON f.fid = fs.faculty_id\r\n"
+			+ "INNER JOIN jpa_student s ON s.sid = fs.student_id\r\n"
+			+ "WHERE f.fid = :id")
+	public List<Object[]> findStudentPerFacultyUsingJoin(Integer id);
+}

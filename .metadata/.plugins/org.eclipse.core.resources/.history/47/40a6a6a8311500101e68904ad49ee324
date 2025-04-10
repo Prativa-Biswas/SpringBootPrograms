@@ -1,0 +1,7 @@
+package com.nit.service;
+
+public interface ICollegeMaganmentService {
+
+	public void saveDataUsingFaculty();
+	public void saveDataUsingStudent();
+}

@@ -1,0 +1,31 @@
+package com.nit.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nit.entity.Faculty;
+import com.nit.entity.Student;
+import com.nit.repository.IFacultyRepository;
+import com.nit.repository.IStudentRepository;
+
+@Service("collegeService")
+public class CollageManagementImpl implements ICollegeMaganmentService {
+
+	@Autowired
+	private IFacultyRepository facultyRepo;
+	
+	@Autowired
+	private IStudentRepository studentRepo;
+	@Override
+	public void saveDataUsingFaculty() {
+
+		//load faculty
+		Faculty fc1= new Faculty("Naveen","HYD");
+		Faculty fc2= new Faculty("Sadhan","Delhi");
+		//load student
+		Student st1=new Student("Prativa","HYD","CEBT");
+		Student st2=new Student("Ankita","Malkangiru","GEBT");
+		Student st3=new Student("Anil","Delhi","JNUT");
+		
+	}
+}

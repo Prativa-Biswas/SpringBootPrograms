@@ -1,0 +1,22 @@
+package com.nit.runner;
+
+import java.util.Scanner;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class PersonPassportMngmentRunner implements CommandLineRunner {
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		try {}
+		catch(Exception e)
+		{
+			Scanner sc= new Scanner(System.in);
+			
+		}
+	}
+
+}

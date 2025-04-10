@@ -1,0 +1,37 @@
+package com.nit.entity;
+
+import java.util.Set;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="JPA_STUDENT")
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Student {
+
+	
+	@SequenceGenerator(name="s_seq",sequenceName = "Student_Seq",initialValue = 10, allocationSize = 1)
+	@GeneratedValue(generator="f_seq",strategy =GenerationType.SEQUENCE )
+	@Id
+	private Integer sid;
+	@Column(length = 20)
+	@NonNull
+	private String sname;
+	@Column(length = 20)
+	@NonNull
+	private String saddress;
+}

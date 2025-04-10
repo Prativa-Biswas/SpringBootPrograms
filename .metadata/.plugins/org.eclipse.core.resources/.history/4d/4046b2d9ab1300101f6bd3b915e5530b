@@ -1,0 +1,52 @@
+package com.nit.service;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nit.entity.Customer;
+import com.nit.entity.PhoneNumber;
+import com.nit.repository.ICustomerRepository;
+import com.nit.repository.IPhoneNumberRepository;
+
+@Service("custService")
+public class CustomerServiceManagement implements ICustomerMgnmtService {
+	
+	@Autowired
+	private ICustomerRepository custRepo;
+	
+	@Autowired
+	private IPhoneNumberRepository phoneRepo;
+
+	@Override
+	public String saveDataUsingParentToChild() {
+     Customer cust= new Customer("Chetna","Hyderabad");
+      PhoneNumber ph1= new PhoneNumber(8907623678L,"VI","Personal");
+      PhoneNumber ph2= new PhoneNumber(8888899999L,"Jio","Office");
+      ph1.setCust(cust); ph2.setCust(cust);
+      Set<PhoneNumber> set=Set.of(ph1,ph2);
+      cust.setPhonesInfo(set);
+      //save using parent cust
+      Integer cust_id = custRepo.save(cust).getCno();
+		return " Customer with it's Associate PhoneNumber Save with id "+cust_id;
+	}
+	
+@Override
+public String saveDataUsingChild() {
+	
+	Customer cust= new Customer("Leela","Vizag");
+    PhoneNumber ph1= new PhoneNumber(9090904321L,"Jio","Personal");
+    PhoneNumber ph2= new PhoneNumber(9999988888L,"Jio","Office");
+    ph1.setCust(cust); ph2.setCust(cust);
+//    Set<PhoneNumber> set=Set.of(ph1,ph2);// in my case i am not getting any exception but there is a chance of getting immutable Object modification exception 
+    Set<PhoneNumber> set=new HashSet<>();
+    set.add(ph1); set.add(ph2);// for safe side recommendable
+    cust.setPhonesInfo(set);
+     //save using child 
+    phoneRepo.saveAll(set);
+    
+	return " Customer with it's Associate PhoneNumber Save with id(Child to Parent) ";
+}
+}

@@ -1,0 +1,17 @@
+package com.nit.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.nit.entity.Customer;
+
+public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
+
+//	@Query("SELECT c.cno,c.cname,c.address,p.regId,p.phoneNumber,p.provider,p.phoneType from Customer c inner join phonesInfo p ")
+//	@Query("SELECT c.cno,c.cname,c.address,p.regId,p.phoneNumber,p.provider,p.phoneType from Customer c right join phonesInfo p ")
+//	@Query("SELECT c.cno,c.cname,c.address,p.regId,p.phoneNumber,p.provider,p.phoneType from Customer c left join phonesInfo p ")
+	@Query("SELECT c.cno,c.cname,c.address,p.regId,p.phoneNumber,p.provider,p.phoneType from Customer c full join phonesInfo p ")
+	public List<Object[]> showAllDataUsingJoin();
+}

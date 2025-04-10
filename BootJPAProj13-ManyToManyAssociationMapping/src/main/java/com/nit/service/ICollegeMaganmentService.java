@@ -1,0 +1,17 @@
+package com.nit.service;
+
+public interface ICollegeMaganmentService {
+
+	public void saveDataUsingFaculty();
+	public void saveDataUsingStudent();
+	
+	public void loadDataUsingFaculty();
+	
+	public void deleteDataUsingFaculty(Integer id);
+	public void deleteDataUsingStudent(Integer id);
+	
+	public void showStudentPerfaculty(Integer id);
+	public void showfacultyPerStudent(Integer id);
+
+
+}

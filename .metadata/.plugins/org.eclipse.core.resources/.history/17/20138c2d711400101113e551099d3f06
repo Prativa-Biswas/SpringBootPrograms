@@ -1,0 +1,19 @@
+package com.nit.service;
+
+import org.springframework.stereotype.Service;
+
+import com.nit.entity.Passport;
+import com.nit.entity.Person;
+
+@Service("passportSevice")
+public class PassportServiceMngment implements IPassportService {
+
+@Override
+	public String loadPersonPassprtDetails(String pName, String pAddress, String passportNumber,
+			String issued_Country) 
+    {
+	Person person=new Person(pName,pAddress);
+	Passport passport= new Passport(passportNumber,issued_Country);
+		return null;
+	}
+}

@@ -1,0 +1,6 @@
+package com.nit.service;
+
+public interface IPassportService {
+
+	public String loadPersonPassprtDetails(String pName,String pAddress,String passportNumber,String issued_Country);
+}

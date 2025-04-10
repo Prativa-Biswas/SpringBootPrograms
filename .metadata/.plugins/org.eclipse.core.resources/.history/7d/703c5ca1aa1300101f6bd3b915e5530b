@@ -1,0 +1,49 @@
+package com.nit.service;
+
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nit.entity.Customer;
+import com.nit.entity.PhoneNumber;
+import com.nit.repository.ICustomerRepository;
+import com.nit.repository.IPhoneNumberRepository;
+
+@Service("custService")
+public class CustomerServiceManagement implements ICustomerMgnmtService {
+	
+	@Autowired
+	private ICustomerRepository custRepo;
+	
+	@Autowired
+	private IPhoneNumberRepository phoneRepo;
+
+	@Override
+	public String saveDataUsingParentToChild() {
+     Customer cust= new Customer("Prativa","Hyderabad");
+      PhoneNumber ph1= new PhoneNumber(8907623456L,"Airtel","Personal");
+      PhoneNumber ph2= new PhoneNumber(9999999999L,"Jio","Office");
+      ph1.setCust(cust); ph2.setCust(cust);
+      Set<PhoneNumber> set=Set.of(ph1,ph2);
+      cust.setPhonesInfo(set);
+      //save using parent cust
+      Integer cust_id = custRepo.save(cust).getCno();
+		return " Customer with it's Associate PhoneNumber Save with id "+cust_id;
+	}
+	
+@Override
+public String saveDataUsingChild() {
+	
+	Customer cust= new Customer("Ankita","Malkangiri");
+    PhoneNumber ph1= new PhoneNumber(9090904321L,"Jio","Personal");
+    PhoneNumber ph2= new PhoneNumber(9999988888L,"Jio","Office");
+    ph1.setCust(cust); ph2.setCust(cust);
+    Set<PhoneNumber> set=Set.of(ph1,ph2);
+    cust.setPhonesInfo(set);
+     //save using child 
+    phoneRepo.saveAll(set);
+    
+	return " Customer with it's Associate PhoneNumber Save with id(Child to Parent) ";
+}
+}

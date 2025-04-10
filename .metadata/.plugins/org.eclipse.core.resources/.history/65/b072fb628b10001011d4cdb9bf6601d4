@@ -1,0 +1,62 @@
+package com.nit.runners;
+
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.util.Optional;
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nit.entity.JobSeekers;
+import com.nit.service.IJobSeekersService;
+
+import lombok.NonNull;
+
+@Component
+public class LargeObjRetriveRunners implements CommandLineRunner {
+
+	@Autowired
+	private IJobSeekersService jsService;
+	@Override
+	public void run(String... args) throws Exception {
+
+		try {
+			Scanner sc= new Scanner(System.in);
+			System.out.println("Enter Job Seeker Id: ");
+			Integer id=sc.nextInt();
+			Optional<JobSeekers> seekersDetails = jsService.fetchJobSeekersDetails(id);
+			if(seekersDetails.isPresent())
+			{
+				JobSeekers seekers = seekersDetails.get();
+				Integer jsId = seekers.getJsId();
+				String name = seekers.getJsName();
+				String address = seekers.getJsAddress();
+				Boolean indian = seekers.getJsIndian();
+				byte[] photo = seekers.getJsPhoto();
+				char[] resume = seekers.getJsResume();
+				System.out.println("Id:"+jsId+" Name:"+name+" Address:"+address+" Indian?:"+indian);
+				try(FileOutputStream fos= new FileOutputStream("retrivedPhoto.jpg");
+					FileWriter fw= new FileWriter("RetrivedResume.pdf");	)
+				{
+					fos.write(photo);
+					fos.flush();
+					fw.write(resume);
+					fw.flush();
+					System.out.println("The Larrge object are retrive to the respctive file are retrivedPhoto.jpg and RetrivedResume.txt");
+				}
+				
+			}
+			else
+			{
+				System.out.println("No Job Seeker is Found With the id"+id);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+}

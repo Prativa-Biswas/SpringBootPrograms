@@ -1,0 +1,8 @@
+package com.nit.service;
+
+import org.springframework.stereotype.Service;
+
+@Service("passportSevice")
+public class PassportServiceMngment implements IPassportService {
+
+}

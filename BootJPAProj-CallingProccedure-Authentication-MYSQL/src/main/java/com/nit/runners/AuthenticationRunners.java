@@ -1,0 +1,27 @@
+package com.nit.runners;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nit.service.IAuthenticationService;
+
+@Component
+public class AuthenticationRunners implements CommandLineRunner {
+    
+	@Autowired
+	private IAuthenticationService service;
+	
+	@Override
+	public void run(String... args) throws Exception {
+   try {
+	   String string = service.doLogin("ankita", "biswas909");
+	   System.out.println(string);
+   }
+   catch(Exception e)
+     {
+	e.printStackTrace();
+	}
+	}
+
+}

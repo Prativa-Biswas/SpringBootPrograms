@@ -1,0 +1,9 @@
+package com.nit.service;
+
+import com.nit.entity.PersonInfo;
+
+public interface IPersonService {
+	
+	public String registerPerson(PersonInfo personInfo);
+
+}

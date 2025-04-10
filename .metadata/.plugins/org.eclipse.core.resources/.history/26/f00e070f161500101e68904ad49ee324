@@ -1,0 +1,5 @@
+package com.nit.entity.service;
+
+public class CollageManagementImpl implements ICollegeMaganmentService {
+
+}

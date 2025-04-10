@@ -1,0 +1,26 @@
+package com.nit.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name="PASSPORT_DEATAILS")
+@Setter
+@Getter
+
+public class Passport {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer ps_RgId;
+	@Column(length = 10)
+	private String passportId;
+	@Column(length = 10)
+	private String issued_Country;
+}

@@ -1,0 +1,40 @@
+package com.nit.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nit.entity.Passport;
+import com.nit.entity.Person;
+import com.nit.repository.IPassportRepository;
+import com.nit.repository.IPersonRepository;
+
+@Service("passportSevice")
+public class PassportServiceMngment implements IPassportService {
+	
+	@Autowired
+	private IPersonRepository presonRepo;
+	@Autowired
+	private IPassportRepository passportRepo;
+
+@Override
+	public String loadPersonPassprtDetails(String pName, String pAddress, String passportNumber,
+			String issued_Country) 
+    {
+	Person person=new Person(pName,pAddress);
+	Passport passport= new Passport(passportNumber,issued_Country);
+	passport.setPer(person);
+	person.setPassport(passport);
+	Integer pId = presonRepo.save(person).getPId();
+	
+	return "Person Passport Details saved with id "+pId;
+	}//end
+
+@Override
+public String loadAllPersonPassportDetails() {
+
+	pers.forEach(per->per.setPassport(null)));
+	return null;
+}
+}

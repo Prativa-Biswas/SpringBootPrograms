@@ -1,0 +1,13 @@
+package com.nit.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityManager;
+
+@Service("sevicePLSQL")
+public class PLSQLProcedureCalling implements IPLSQLProcedureService {
+
+	@Autowired
+	private EntityManager manager;
+}

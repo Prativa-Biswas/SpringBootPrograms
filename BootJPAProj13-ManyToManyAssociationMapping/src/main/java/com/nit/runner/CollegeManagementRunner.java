@@ -1,0 +1,68 @@
+package com.nit.runner;
+
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nit.service.ICollegeMaganmentService;
+
+@Component
+public class CollegeManagementRunner implements CommandLineRunner {
+	
+	@Autowired
+	private ICollegeMaganmentService service;
+
+	@Override
+	public void run(String... args) throws Exception {
+		/* try {
+			 service.saveDataUsingFaculty();
+		 }
+		 catch(Exception e)
+		 {e.printStackTrace();}*/
+		
+		/* try {
+			 service.saveDataUsingStudent();
+		 }
+		 catch(Exception e)
+		 {e.printStackTrace();}*/
+		
+		/* try {
+			 service.loadDataUsingFaculty();
+		 }
+		 catch(Exception e)
+		 {e.printStackTrace();}*/
+		
+		/*try {
+		 service.deleteDataUsingFaculty(122);
+		}
+		catch(Exception e)
+		{e.printStackTrace();}*/
+		
+		/*try {
+		 service.deleteDataUsingStudent(14);
+		}
+		catch(Exception e)
+		{e.printStackTrace();}*/
+		
+		/*try {
+			Scanner sc= new Scanner(System.in);
+			System.out.println("Enter Faculty id: ");
+			Integer id=sc.nextInt();
+		   	 service.showStudentPerfaculty(id);
+		    }
+		    catch(Exception e)
+		    {e.printStackTrace();}*/
+		
+		try {
+			Scanner sc= new Scanner(System.in);
+			System.out.println("Enter Faculty id: ");
+			Integer id=sc.nextInt();
+	       	 service.showfacultyPerStudent(id);;
+	        }
+	        catch(Exception e)
+	        {e.printStackTrace();}
+	}
+
+}

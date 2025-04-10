@@ -1,0 +1,21 @@
+package com.nit.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nit.entity.PersonInfo;
+import com.nit.repository.IPersonInformation;
+
+@Service
+public class PersonServiceimpl implements IPersonService {
+	
+	@Autowired
+	private IPersonInformation personRepo;
+
+	@Override
+	public String registerPerson(PersonInfo personInfo) {
+		Integer id = personRepo.save(personInfo).getPsId();
+		return "Person registered with ID "+id;
+	}
+
+}

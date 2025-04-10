@@ -1,0 +1,22 @@
+package com.nit.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.StoredProcedureQuery;
+
+@Service
+public class AuthenticationServiceIMPL implements IAuthenticationService {
+	
+	@Autowired
+	private EntityManager manager;
+	
+	@Override
+	public String doLogin(String uname, String passwors) {
+// create StaoredProcedureQuery object
+		StoredProcedureQuery query = manager.createStoredProcedureQuery("P_LOGIN_CREDENTIALS");
+		return null;
+	}
+
+}

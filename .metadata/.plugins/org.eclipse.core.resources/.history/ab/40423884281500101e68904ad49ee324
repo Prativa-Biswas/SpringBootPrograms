@@ -1,0 +1,48 @@
+package com.nit.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="JPA_FACULTY")
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Faculty {
+
+	@SequenceGenerator(name="f_seq",sequenceName = "Fculty_Seq",initialValue = 101, allocationSize = 10)
+	@GeneratedValue(generator="f_seq",strategy =GenerationType.SEQUENCE )
+	@Id
+	private Integer fid;
+	@Column(length = 20)
+	@NonNull
+	private String fname;
+	@Column(length = 20)
+	@NonNull
+	private String faddress;
+	
+	@ManyToMany(targetEntity = Student.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinTable(name="JPA_FACULTY_STUDENT",joinColumns=@JoinColumn(name="FACULTY_ID",referencedColumnName = "fid")
+	 ,inverseJoinColumns = @JoinColumn(name="STUDENT_ID",referencedColumnName = "sid"))
+	private Set<Student> studentInfo=new HashSet<>();
+	
+}

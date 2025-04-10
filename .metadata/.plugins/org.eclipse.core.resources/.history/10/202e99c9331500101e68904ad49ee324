@@ -1,0 +1,120 @@
+package com.nit.service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import com.nit.runner.CollegeManagementRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nit.entity.Faculty;
+import com.nit.entity.Student;
+import com.nit.repository.IFacultyRepository;
+import com.nit.repository.IStudentRepository;
+
+@Service("collegeService")
+public class CollageManagementImpl implements ICollegeMaganmentService {
+
+    private final CollegeManagementRunner collegeManagementRunner;
+
+	@Autowired
+	private IFacultyRepository facultyRepo;
+	
+	@Autowired
+	private IStudentRepository studentRepo;
+
+    CollageManagementImpl(CollegeManagementRunner collegeManagementRunner) {
+        this.collegeManagementRunner = collegeManagementRunner;
+    }
+	@Override
+	public void saveDataUsingFaculty() {
+
+		//load faculty
+		Faculty fc1= new Faculty("Naveen","HYD");
+		Faculty fc2= new Faculty("Sadhan","Delhi");
+		//load student
+		Student st1=new Student("Prativa","HYD","CEBT");
+		Student st2=new Student("Ankita","Malkangiru","GEBT");
+		Student st3=new Student("Anil","Delhi","JNUT");
+		
+		//assign student to faculty
+		fc1.getStudentInfo().add(st1);
+		fc1.getStudentInfo().add(st2);
+		fc1.getStudentInfo().add(st3);
+		fc2.getStudentInfo().add(st2);
+		fc2.getStudentInfo().add(st3);
+		//assign faculty to student
+		st1.getFacultyInfo().add(fc1);
+		st1.getFacultyInfo().add(fc2);
+		st2.getFacultyInfo().add(fc2);
+		st3.getFacultyInfo().add(fc2);
+		st3.getFacultyInfo().add(fc1);
+		//save faculty and student method
+		
+		facultyRepo.save(fc1);
+		facultyRepo.save(fc2);
+		System.out.println("Fcaulty added with their associted Student");		
+		
+	}//method
+@Override
+	public void saveDataUsingStudent() {
+
+	//load faculty
+	Faculty fc1= new Faculty("MIHIR","PUNE");
+	Faculty fc2= new Faculty("RATAN","PUNE");
+	//load student
+	Student st1=new Student("Rabati","Pune","Revensha");
+	Student st2=new Student("Mayank","Patna","Gopabandhu");
+	Student st3=new Student("Nimrat","Mumbai","RITE");
+	
+	//assign faculty to student
+		st1.getFacultyInfo().add(fc1);// Rabati-MIHIR
+		st1.getFacultyInfo().add(fc2);//Rabati-RATAN
+		st2.getFacultyInfo().add(fc2);//Mayank-RATAN
+		st3.getFacultyInfo().add(fc2);//Nimrat-RATAN
+		st3.getFacultyInfo().add(fc1);//Nimrat-MIHIR
+	
+	//assign student to faculty
+	fc1.getStudentInfo().add(st1);//MIHIR-Rabati
+	fc1.getStudentInfo().add(st2);//MIHIR-Mayank
+	fc1.getStudentInfo().add(st3);//MIHIR-Nimrat
+	fc2.getStudentInfo().add(st2);//RATAN-Mayank
+	fc2.getStudentInfo().add(st3);//RATAN-Nimrat
+	
+	//save faculty and student method
+	studentRepo.save(st1);
+	studentRepo.save(st2);
+	studentRepo.save(st3);
+	
+	System.out.println("Student added with their associted Faculty");
+		
+	}//METHOD
+@Override
+public void loadDataUsingFaculty() {
+
+	List<Faculty> list = facultyRepo.findAll();
+	list.forEach(fac->{
+		System.out.println("Faculty:: "+fac);
+		fac.getStudentInfo().forEach(st->{System.out.println("Student:: "+st);});
+	});
+}//method
+@Override
+public void deleteDataUsingFaculty(Integer id) {
+	Optional<Faculty> byId = facultyRepo.findById(id);
+	if(byId.isPresent())
+	{
+		Faculty faculty = byId.get();
+		Set<Student> students = faculty.getStudentInfo();
+		faculty.setStudentInfo(null);
+		students.forEach(st->st.setFacultyInfo(null));
+		facultyRepo.save(faculty);
+		facultyRepo.save(fc2);
+		System.out.println("Faculty with assigned student deleted of id "+byId.get().getFid());
+	}
+	else
+	{
+		System.out.println("Faculty not found");
+	}
+}
+
+}

@@ -1,0 +1,66 @@
+package com.nit.runners;
+
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.nit.service.ICustomerMgnmtService;
+
+@Component
+public class AssociationMngmntRunners implements CommandLineRunner {
+
+	@Autowired
+	private ICustomerMgnmtService custService;
+	
+	@Override
+	public void run(String... args) throws Exception {
+
+		/*	try {
+				String msg = custService.saveDataUsingParentToChild();
+				System.out.println(msg);
+			}
+			catch(Exception e) { e.printStackTrace();}*/
+		
+		/*try {
+			String msg = custService.saveDataUsingChild();
+			System.out.println(msg);
+		}
+		catch(Exception e) { e.printStackTrace();}*/
+		
+		/*	try {
+				 custService.loadDataUsingParent();
+				
+			}
+			catch(Exception e) { e.printStackTrace();}*/
+		
+		/*try {
+			 custService.loadDataUsingChild();
+			
+		}
+		catch(Exception e) { e.printStackTrace();}*/
+		
+		/*try {
+			Scanner sc= new Scanner(System.in);
+			 System.out.println("Enter a customer id for deletion: ");
+			 Integer id=sc.nextInt();
+			 String msg = custService.deleteDataUsingParent(id);
+			 System.out.println(msg);
+			
+		}
+		catch(Exception e) { e.printStackTrace();}*/
+		
+		try {
+			Scanner sc= new Scanner(System.in);
+			 System.out.println("Enter a customer id for deletion: ");
+			 Integer id=sc.nextInt();
+			 String msg = custService.deleteAllPhoneNumbersOfCustomer(id);
+			 System.out.println(msg);
+			
+		}
+		catch(Exception e) { e.printStackTrace();}
+		
+	}
+
+}

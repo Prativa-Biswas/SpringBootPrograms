@@ -1,0 +1,7 @@
+package com.nit.service;
+
+public interface ICustomerMgnmtService {
+	
+	public String saveDataParentToChild();
+
+}
